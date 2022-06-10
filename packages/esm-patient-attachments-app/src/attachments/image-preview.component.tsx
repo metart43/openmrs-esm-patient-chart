@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UserHasAccess } from '@openmrs/esm-framework';
-import { Button, ButtonSet, TextInput } from 'carbon-components-react';
+import { Button, ButtonSet, TextInput } from '@carbon/react';
 import styles from './image-preview.scss';
 
 interface FilePreviewProps {
@@ -60,10 +60,10 @@ export default function FilePreview(props: FilePreviewProps) {
       )}
       <UserHasAccess privilege="Create Attachment">
         <ButtonSet className={styles.buttonSetOverrides}>
-          <Button size="small" onClick={saveImageOrPdf} disabled={saving}>
+          <Button size="sm" onClick={saveImageOrPdf} disabled={saving}>
             {t('save', 'Save')}
           </Button>
-          <Button kind="danger" size="small" onClick={cancelCapture} disabled={saving}>
+          <Button kind="danger" size="sm" onClick={cancelCapture} disabled={saving}>
             {t('cancel', 'Cancel')}
           </Button>
         </ButtonSet>

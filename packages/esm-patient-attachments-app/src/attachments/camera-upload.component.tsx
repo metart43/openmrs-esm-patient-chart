@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import FilePreview from './image-preview.component';
-import styles from './camera-upload.scss';
-import Camera from 'react-html5-camera-photo';
 import { showToast } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
+import FilePreview from './image-preview.component';
+import Camera from 'react-html5-camera-photo';
+import styles from './camera-upload.scss';
 import { readFileAsString } from './utils';
 import 'react-html5-camera-photo/build/css/index.css';
 

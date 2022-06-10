@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import AttachmentThumbnail from './attachment-thumbnail.component';
 import Gallery from 'react-grid-gallery';
-import styles from './attachments-overview.scss';
-import Add16 from '@carbon/icons-react/es/add/16';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'carbon-components-react';
-import { LayoutType, showModal, showToast, useLayoutType, usePagination, UserHasAccess } from '@openmrs/esm-framework';
+import { Add } from '@carbon/react/icons';
+import { Button } from '@carbon/react';
+import { LayoutType, showModal, useLayoutType, usePagination, UserHasAccess } from '@openmrs/esm-framework';
 import { PatientChartPagination, EmptyState, CardHeader } from '@openmrs/esm-patient-common-lib';
 import { getAttachments, createAttachment, deleteAttachment, getAttachmentByUuid } from './attachments.resource';
 import { createGalleryEntry, readFileAsString } from './utils';
+import AttachmentThumbnail from './attachment-thumbnail.component';
+import styles from './attachments-overview.scss';
 
 export interface Attachment {
   id: string;
@@ -29,7 +29,9 @@ function getPageSize(layoutType: LayoutType) {
       return 9;
     case 'phone':
       return 3;
-    case 'desktop':
+    case 'small-desktop':
+      return 25;
+    case 'large-desktop':
       return 25;
     default:
       return 8;
@@ -194,7 +196,12 @@ const AttachmentsOverview: React.FC<{ patientUuid: string }> = ({ patientUuid })
           >
             <div className={styles.attachmentsHeader}>
               <CardHeader title={t('attachments', 'Attachments')}>
-                <Button kind="ghost" renderIcon={Add16} iconDescription="Add attachment" onClick={showCam}>
+                <Button
+                  kind="ghost"
+                  renderIcon={(props) => <Add size={16} {...props} />}
+                  iconDescription="Add attachment"
+                  onClick={showCam}
+                >
                   {t('add', 'Add')}
                 </Button>
               </CardHeader>

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './allergy-form-tab.component.scss';
-import { RadioButtonGroup, RadioButton } from 'carbon-components-react';
+import { RadioButtonGroup, RadioButton } from '@carbon/react';
 import { OpenMRSResource } from '../../types';
+import styles from './allergy-form-tab.scss';
 
 interface AllergyFormTabProps {
   allergens: Array<OpenMRSResource>;
@@ -14,6 +14,7 @@ const AllergyFormTab: React.FC<AllergyFormTabProps> = ({ allergens, selectedAlle
   const handleOnChange = React.useCallback((event) => {
     handleChange(event);
   }, []);
+
   return (
     <RadioButtonGroup
       className={styles.radioButtonWrapper}

@@ -42,15 +42,16 @@ describe('<OrderBasketActionButton/>', () => {
     expect(orderBasketButton).toHaveClass('active');
   });
 
-  it('should display the count Tag if order are present on desktop view', () => {
+  it('should display a count tag when orders are present on the desktop view', () => {
     spyOn(esmFramework, 'useLayoutType').and.returnValue('desktop');
     spyOn(esmFramework, 'useStore').and.returnValue({ items: [{ name: 'order-01', uuid: 'some-uuid' }] });
     render(<OrderBasketActionButton />);
 
-    expect(screen.getByRole('button', { name: /orders 1/i })).toBeInTheDocument();
+    expect(screen.getByText(/orders/i)).toBeInTheDocument();
+    expect(screen.getByText(/1/i)).toBeInTheDocument();
   });
 
-  it('should display the count Tag if order are present on tablet view', () => {
+  it('should display the count tag when orders are present on the tablet view', () => {
     spyOn(esmFramework, 'useLayoutType').and.returnValue('tablet');
     spyOn(esmFramework, 'useStore').and.returnValue({ items: [{ name: 'order-01', uuid: 'some-uuid' }] });
     render(<OrderBasketActionButton />);

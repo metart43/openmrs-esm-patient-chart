@@ -1,3 +1,4 @@
+@use '@carbon/styles/scss/spacing';
 @import "../root.scss";
 
 .upload input[type="file"] {
@@ -14,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing-04 0 $spacing-04 $spacing-05;
+  padding: spacing.$spacing-04 0 spacing.$spacing-04 spacing.$spacing-05;
   background-color: $ui-background;
 }
 
