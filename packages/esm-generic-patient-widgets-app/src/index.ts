@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, defineExtensionConfigSchema, getAsyncLifecycle } from '@openmrs/esm-framework';
 import { configSchema } from './config-schema';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -15,7 +15,7 @@ function setupOpenMRS() {
     moduleName,
   };
 
-  defineConfigSchema(moduleName, configSchema);
+  defineExtensionConfigSchema('obs-by-encounter-widget', configSchema);
 
   return {
     extensions: [
