@@ -3,7 +3,7 @@ import Gallery from 'react-grid-gallery';
 import { useTranslation } from 'react-i18next';
 import { Add } from '@carbon/react/icons';
 import { Button } from '@carbon/react';
-import { LayoutType, showModal, useLayoutType, usePagination, UserHasAccess } from '@openmrs/esm-framework';
+import { LayoutType, showModal, showToast, useLayoutType, usePagination, UserHasAccess } from '@openmrs/esm-framework';
 import { PatientChartPagination, EmptyState, CardHeader } from '@openmrs/esm-patient-common-lib';
 import { getAttachments, createAttachment, deleteAttachment, getAttachmentByUuid } from './attachments.resource';
 import { createGalleryEntry, readFileAsString } from './utils';
@@ -173,6 +173,7 @@ const AttachmentsOverview: React.FC<{ patientUuid: string }> = ({ patientUuid })
   }
 
   return (
+    // @ts-ignore
     <UserHasAccess privilege="View Attachments">
       <div
         className={styles.overview}
@@ -181,6 +182,7 @@ const AttachmentsOverview: React.FC<{ patientUuid: string }> = ({ patientUuid })
         onDragOver={handleDragOver}
       >
         {attachments.some((m) => m.isSelected) && (
+          // @ts-ignore
           <UserHasAccess privilege="Delete Attachment">
             <div className={styles.actions}>
               <Button kind="danger" onClick={deleteSelected}>

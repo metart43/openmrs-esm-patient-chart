@@ -1,8 +1,8 @@
 import { forkJoin as observableForkJoin, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import forEach from 'lodash-es/forEach';
 import { WindowRef } from '../window-ref';
 import { Concept } from '../types';
 
@@ -24,13 +24,13 @@ export class ConceptService {
     });
   }
 
-  public searchBulkConceptByUUID(
+  public searchBulkConceptsByUUID(
     conceptUuids: Array<string>,
     lang: string,
   ): Observable<Array<Concept & { extId: string }>> {
     const observablesArray = [];
 
-    for (const conceptUuid of conceptUuids) {
+    forEach(conceptUuids, (conceptUuid) =>
       observablesArray.push(
         this.searchConceptByUUID(conceptUuid, lang).pipe(
           map((concept) => {
@@ -41,8 +41,8 @@ export class ConceptService {
             return of({ extId: conceptUuid, display: 'Failed to load concept label' });
           }),
         ),
-      );
-    }
+      ),
+    );
 
     return observableForkJoin(observablesArray) as Observable<Array<Concept & { extId: string }>>;
   }
